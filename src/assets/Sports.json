@@ -1,0 +1,73 @@
+[
+    {
+        "id":1,
+        "name":"Soccer",
+        "imageUrl":"https://new.hollywoodbets.net/assets/images/icons/soccer.svg"
+    },
+    {
+        "id":2,
+        "name":"Betgames",
+        "imageUrl":"https://new.hollywoodbets.net/assets/images/icons/Betgames.svg"
+    },
+    {
+        "id":3,
+        "name":"Live In-Play",
+        "imageUrl":"https://new.hollywoodbets.net/assets/images/icons/live-in-play.svg"
+    },
+    {
+        "id":4,
+        "name":"Sports Exotics",
+        "imageUrl":"https://new.hollywoodbets.net/assets/images/icons/sport-exotics.svg"
+    },
+    {
+        "id":5,
+        "name":"Horse Racing",
+        "imageUrl":"https://new.hollywoodbets.net/assets/images/icons/horse-racing.svg"
+    },
+    {
+        "id":6,
+        "name":"Lucky Numbers",
+        "imageUrl":"https://new.hollywoodbets.net/assets/images/icons/lucky-numbers.svg"
+    },
+    {
+        "id":7,
+        "name":"In-Running",
+        "imageUrl":"https://new.hollywoodbets.net/assets/images/icons/in-running.svg"
+    },
+    {
+        "id":8,
+        "name":"Tennis",
+        "imageUrl":"https://new.hollywoodbets.net/assets/images/icons/tennis.svg"
+    },
+    {
+        "id":9,
+        "name":"Rugby",
+        "imageUrl":"https://new.hollywoodbets.net/assets/images/icons/rugby.svg"
+    },
+    {
+        "id":10,
+        "name":"Cricket",
+        "imageUrl":"https://new.hollywoodbets.net/assets/images/icons/cricket.svg"
+    },
+    {
+        "id":11,
+        "name":"Golf",
+        "imageUrl":"https://new.hollywoodbets.net/assets/images/icons/golf.svg"
+    },
+    {
+        "id":12,
+        "name":"Basketball",
+        "imageUrl":"https://new.hollywoodbets.net/assets/images/icons/basketball.svg"
+    },
+    {
+        "id":13,
+        "name":"Darts",
+        "imageUrl":"https://new.hollywoodbets.net/assets/images/icons/darts.svg"
+    },
+    {
+        "id":14,
+        "name":"Boxing",
+        "imageUrl":"https://new.hollywoodbets.net/assets/images/icons/boxing.svg"
+    }
+
+]

@@ -1,0 +1,160 @@
+<div class="col-md-12" >
+    <div class="row alignCard">
+        <div class="card text-white" style="border-color: transparent; background-color: #2b2b2b;min-width: 100%!important;" >
+            <div class="card-header" style="background-color: #643e94;border-radius: 0px;">
+            Bet Slip ({{count}})
+            </div>
+            <div class="card-body betSlipOverflow" style="padding: 0px!important;">
+                <div *ngIf="count ==0">
+                    <p style="font-size: small;padding:1.25rem!important;" >
+                        <strong>To place a bet: </strong> Choose the sport, tournament and event that you would like to bet on. Then select a market by clicking the odds that you would like to bet on.
+                    </p>
+                </div>
+                <div *ngFor="let bet of item">
+                    <div class="media border border-{{getColor(bet.warning)}} mt-2 p-2" >
+                        <div class="media-body">
+                          <p>{{bet.id}} {{bet.punterBetSelection}}</p>
+                          <p style="font-size: small;">
+                              {{bet.typeOfEvent}} {{bet.selctionOdds}}
+                              <br>
+                              {{bet.event.leagueName}}
+                              <br>
+                              {{bet.event.time}}
+                              <br>
+                              {{bet.event.homeTeam}} vs {{bet.event.awayTeam}}
+                              <br>
+                          </p>
+                          <p style="color: yellow;"><strong>{{bet.relatedGamesMessage}}</strong></p>
+                          <button type="button" (click)="remove(bet);"  class="btn btn-danger" style="background-color: transparent;border-radius: 10px;">Remove</button>
+                          <hr style="color: white!important;">
+                          <div class="row">
+                              <div class="col-md-6">
+                                <label style="font-size:small;">
+                                    Stake : R  <input #box (keyup)="onKey(box.value,bet.selctionOdds,bet.id)" value="{{bet.stake}}" style="max-width: 35px;">
+                                   </label>
+                              </div>
+                              <div class="col-md-6">
+                                <label style="font-size:small;">
+                                    Payout : R 
+                                    <input #payout (keyup)="calculateCostBaseOnPayout(payout.value,bet.selctionOdds,bet.id)"  value="{{bet.payout}}" style="max-width: 35px;">
+                                </label>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                <div *ngIf="count >= 1">
+                    <button type="button" (click)="clearBetSlip();"  class="btn btn-danger mt-2" style="background-color: transparent;border-radius: 10px;min-width: 100%!important;">Clear</button>
+                </div>
+            </div>
+        </div>
+        <div *ngIf ="count > 1">
+            <div *ngIf="!checkIfMutipleAllowed()">
+                <div class="card text-white bg-warning mb-3 mt-2" style="border-radius: 0px;min-width: 100%!important;">
+                    <div class="card-body">
+                      <p class="card-text"> Cannot submit multiple legs from the same event. Related legs found: {{message}}</p>
+                    </div>
+            </div>
+        </div>
+            <div *ngIf="checkIfMutipleAllowed()">
+                <div class="card text-white mt-2" style="border-radius: 0px!important; min-width: 100%!important;background-color: #2b2b2b   !important;">
+                    <div class="card-header" style="background-color: #643e94 ;">Multiple</div>
+                      <div class="card-body" >
+                          <div class="container-fluid">
+                            <div class="row" >
+                                <div class="col-xs-4">
+                                   <small>Odds</small>&nbsp;&nbsp;
+                                   <p class="multipleText">{{odds}}</p>
+                                   </div>
+                                   <div class="col-xs-4">
+                                    <small>Bounus</small>
+                                    <p class="multipleText">{{bonus}}%</p>&nbsp;
+                                   </div>
+                                 <div class="col-xs-4" >
+                                   <small>&nbsp;&nbsp;= Final Odds</small>
+                                    <p class="multipleText" style="text-align: center!important;">{{finalOdds}}</p>
+                                 </div>
+                                
+                              </div>
+                              <p style="font-size: medium;text-align: center!important;color: #2290cf;">{{numberOfLegsMessage}}</p>
+                          </div>
+                      </div>
+                      <a class="" style="text-align: center!important;color: darkgoldenrod!important;" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Show Bonus Table
+                      </a>
+                      <div class="collapse" id="collapseExample">
+
+                        <div class="container">
+                            <table class="table table-bordered text-white" >
+                                  <thead>
+                                      <tr>
+                                        <th>Legs</th>
+                                        <th>Bonus</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+      
+                                        <tr *ngFor="let values of bonusArray" class="table-{{getRowColour(values.id)}}" >
+                                           <td >
+                                               {{values.numberOfLegs}}
+                                           </td>
+                                           <td>
+                                               {{values.bounusPercentage}}%
+                                           </td>
+                                        </tr>
+                                    </tbody>
+                               </table>
+                            </div>
+                      </div>
+                     
+                      <div class="row ml-2">
+                        <div class="col-md-6">
+                          <label style="font-size:small;">
+                              Stake : R  <input #betSlipStake (keyup)="calculateMutiplePayoutBaseOnStake(betSlipStake.value)" value="{{multipleStake}}" style="max-width: 50px;">
+                             </label>
+                        </div>
+                        <div class="col-md-6">
+                          <label style="font-size:small;">  
+                              Payout : R                                                  
+                              <input #betSlipPayout (keyup)="calculateStakeBaseonPayout(betSlipPayout.value)" value="{{multiplePayout}}" style="max-width: 50px;">
+                          </label>
+                        </div>
+                    </div>
+
+
+                  </div>
+            </div>
+        </div>
+        
+
+        <div class="card bg-dark text-white mt-2" style="min-width: 100%!important;">
+          <img class="card-img" style="min-width: 100%!important;"  src="https://hollywoodmedia.hollywoodbets.net/images/cms/new-website/images/go-back-to-old-website.gif" alt="">
+          <div class="card-img-overlay">
+          </div>
+        </div>
+
+        <div class="mt-1 moveButtons" style="text-align: left!important;" >
+            <div class="row" >
+                <button type="button" class="btn btn-primary betButton mt-1 sidenavButtons" >Upload FICA</button>
+            </div>
+            <div class="row">
+                <button type="button" class="btn btn-primary betButton mt-1 sidenavButtons" >Sports Blog</button>
+            </div>
+           <div class="row">
+            <button type="button" class="btn btn-primary betButton mt-1 sidenavButtons" >Social Responsibility</button>
+           </div>
+            <div class="row">
+                <button type="button" class="btn btn-primary betButton mt-1 sidenavButtons">Soccer Betting News</button>
+            </div>
+            <div class="row">
+                <button type="button" class="btn btn-primary betButton mt-1 sidenavButtons" >Winning Form</button>
+            </div>
+            <div class="row">
+                <button type="button" class="btn btn-primary betButton mt-1 sidenavButtons" >Become an Affiliate</button>
+            </div>
+            <div class="row">
+                <button type="button" class="btn btn-primary betButton mt-1 sidenavButtons" >Careers</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+.betButton{
+    border-radius: 0px!important;
+    background-color: #643e94!important;
+    border-color:#643e94!important ;
+}
+@media(max-width:750px){
+    .alignCard{
+        min-width: 100%!important;
+        border-radius: 0px!important;
+    }
+    .sidenavButtons{
+        min-width: 100%!important;
+    }
+  
+}
+@media(min-width:750px){
+    .alignCard{
+        max-width: 205px!important;
+        margin-left: -25%!important;
+        border-radius: 0px!important;
+    }
+    .moveButtons{
+        margin-left: 8%!important;
+    }
+    .sidenavButtons{
+        min-width: 205px!important;
+          
+    }
+}
+.betSlipOverflow{
+    overflow-y: auto!important;
+    max-height: 500px!important;
+    min-width: 100%;
+    scrollbar-width: thin!important;
+}
+
+.scrollable-element {
+    scrollbar-width: thin;
+  }
+
+  .multipleText{
+    font-size: large!important;
+    color: chartreuse!important;
+  }
+  .table-bordered{
+      border-color:1px solid  #2290cf!important;
+  }
+  .table-bordered th, .table-bordered td {
+    border: 1px solid #2290cf!important;
+}
+
+.table-primary{
+    opacity: 0.5!important;
+}

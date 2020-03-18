@@ -1,0 +1,14 @@
+@media(max-width:786px){
+    .heroImage{
+        margin-top: 5%!important;
+    }
+}
+
+@media(max-width:1250px){
+    .betCard1{
+        width: 100%!important;
+    }
+    .betCard2{
+        min-width: 100%!important;
+    }
+}

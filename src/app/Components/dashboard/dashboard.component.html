@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="col-md-12">
+        <div class="row heroImage">
+            <div class="card bg-dark text-white"  style="border-radius: 0px;">
+              <img class="card-img"  style="border-radius: 0px;" src="https://hollywoodmedia.hollywoodbets.net/images/cms/new-website/images/raf.png" alt="">
+              <div class="card-img-overlay">
+              </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6-fluid mt-2 betCard1">
+              <table class="table table-dark text-white " style="border-radius: 0px;max-width: 420px!important">
+                <thead>
+                  <tr style="background-color: #333333 ;max-height: 25px!important;" >
+                    <th scope="col">Todays Soccer</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <div *ngFor="let game of soccerMatches | slice:0:4" >
+                    <tr style="background-color:#333333;min-width: 100%!important;">
+                      <td style="font-size: small!important;padding: 0.35rem!important;">{{game.time}}   &nbsp; 
+                        <img src="https://www.countryflags.io/{{game.countryCode}}/flat/16.png" class="img-fluid" height="20px" width="20px" alt="">
+                    &nbsp;    {{game.leagueName}}</td>
+                    </tr>
+                    <tr style="padding: 0px!important;">
+                      <td style="padding: 0px!important;">   
+                        <div class="btn-group" role="group" aria-label="Basic example" style="min-width: 100%!important;font-size: small!important;padding: 0px1important;border-radius: 0px!important;">
+                          <button type="button" style="min-width: 140px!important;font-size: small;border-radius: 0px!important;background-color: #643e94!important;" (click)="addEventToBetSlip(game,game.homeTeam,game.homePrice);" class="btn btn-secondary">{{game.homeTeam}} {{game.homePrice}}</button>
+                          <button type="button" style="min-width: 140px!important;font-size: small;border-left: 1px solid black!important;border-radius: 0px!important;;border-right: 2px solid black!important;background-color: #643e94!important;" (click)="addEventToBetSlip(game,'Draw',game.draw);" class="btn btn-secondary">Draw {{game.draw}}</button>
+                          <button type="button" style="min-width: 140px!important;font-size: small;border-radius: 0px!important;background-color: #643e94!important;" (click)="addEventToBetSlip(game,game.awayTeam,game.awayPrice);" class="btn btn-secondary">{{game.awayTeam}} {{game.awayPrice}}</button>
+                        </div>             
+                      </td>
+                    </tr>
+                  </div>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-md-6-fluid ml-lg-3 mt-2 betCard2">
+              <table class="table table-dark text-white" style="border-radius: 0px;max-width: 420px!important">
+                <thead>
+                  <tr style="background-color: #333333 ;max-height: 25px!important;" >
+                    <th scope="col">Todays Soccer</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <div *ngFor="let game of soccerMatches | slice:4:8" >
+                    <tr style="background-color:#333333;min-width: 100%!important;">
+                      <td style="font-size: small!important;padding: 0.35rem!important;">{{game.time}}   &nbsp; 
+                        <img src="https://www.countryflags.io/{{game.countryCode}}/flat/16.png" class="img-fluid" height="20px" width="20px" alt="">
+                    &nbsp;    {{game.leagueName}}</td>
+                    </tr>
+                    <tr style="padding: 0px!important;">
+                      <td style="padding: 0px!important;">   
+                        <div class="btn-group" role="group" aria-label="Basic example" style="min-width: 100%!important;font-size: small!important;padding: 0px1important;border-radius: 0px!important;">
+                          <button type="button" style="min-width: 140px!important;font-size: small;border-radius: 0px!important;background-color: #643e94!important;" (click)="addEventToBetSlip(game,game.homeTeam,game.homePrice);" class="btn btn-secondary">{{game.homeTeam}} {{game.homePrice}}</button>
+                          <button type="button" style="min-width: 140px!important;font-size: small;border-left: 1px solid black!important;border-radius: 0px!important;;border-right: 2px solid black!important;background-color: #643e94!important;" (click)="addEventToBetSlip(game,'Draw',game.draw);" class="btn btn-secondary">Draw {{game.draw}}</button>
+                          <button type="button" style="min-width: 140px!important;font-size: small;border-radius: 0px!important;background-color: #643e94!important;" (click)="addEventToBetSlip(game,game.awayTeam,game.awayPrice);" class="btn btn-secondary">{{game.awayTeam}} {{game.awayPrice}}</button>
+                        </div>             
+                      </td>
+                    </tr>
+                  </div>
+                </tbody>
+              </table>
+            </div>
+        </div>
+   </div>
+</div>
+

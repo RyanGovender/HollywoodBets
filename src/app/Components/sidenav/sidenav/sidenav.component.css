@@ -1,0 +1,13 @@
+.btn{
+    border-radius: 0px!important;
+    border-color: black;
+}
+
+.containerX{
+    overflow-y: auto!important;
+    max-height: 700px!important;
+    min-width: 100%;
+}
+.media{
+    box-shadow: 1px 1px 1px 1px #000;
+}
