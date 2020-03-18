@@ -3,6 +3,11 @@
         <div class="card text-white" style="border-color: transparent; background-color: #2b2b2b;min-width: 100%!important;" >
             <div class="card-header" style="background-color: #643e94;border-radius: 0px;">
             Bet Slip ({{count}})
+            
+                <button *ngIf="count > 0" type="button" class="close"  aria-label="Close" (click)="clearBetSlip();" >
+                    <span aria-hidden="true" style="color: red!important;">&times;</span>
+                  </button>
+            
             </div>
             <div class="card-body betSlipOverflow" style="padding: 0px!important;">
                 <div *ngIf="count ==0">
@@ -11,9 +16,14 @@
                     </p>
                 </div>
                 <div *ngFor="let bet of item">
-                    <div class="media border border-{{getColor(bet.warning)}} mt-2 p-2" >
+                    <div class="media border border-{{getColor(bet.warning)}} mt-2 p-2" style="background-color: #1e1e1e;" >
                         <div class="media-body">
-                          <p>{{bet.id}} {{bet.punterBetSelection}}</p>
+                          <p>{{bet.id}} {{bet.punterBetSelection}}
+                            <button type="button" class="close"  aria-label="Close" (click)="remove(bet);" >
+                                <span aria-hidden="true" style="color: red!important;">&times;</span>
+                              </button>
+
+                          </p>
                           <p style="font-size: small;">
                               {{bet.typeOfEvent}} {{bet.selctionOdds}}
                               <br>
@@ -25,18 +35,18 @@
                               <br>
                           </p>
                           <p style="color: yellow;"><strong>{{bet.relatedGamesMessage}}</strong></p>
-                          <button type="button" (click)="remove(bet);"  class="btn btn-danger" style="background-color: transparent;border-radius: 10px;">Remove</button>
                           <hr style="color: white!important;">
                           <div class="row">
                               <div class="col-md-6">
+                                
                                 <label style="font-size:small;">
-                                    Stake : R  <input #box (keyup)="onKey(box.value,bet.selctionOdds,bet.id)" value="{{bet.stake}}" style="max-width: 35px;">
+                                    Stake : R  <input appcurrencyformatter="" #box (keyup)="onKey(box.value,bet.selctionOdds,bet.id)" (click)="onKey(box.value,bet.selctionOdds,bet.id)" value="{{bet.stake}}" class="form-control stake-input-box input-sm ng-pristine ng-valid ng-touched spinner"  min="1" type="number" >
                                    </label>
                               </div>
                               <div class="col-md-6">
                                 <label style="font-size:small;">
                                     Payout : R 
-                                    <input #payout (keyup)="calculateCostBaseOnPayout(payout.value,bet.selctionOdds,bet.id)"  value="{{bet.payout}}" style="max-width: 35px;">
+                                    <input appcurrencyformatter="" #payout (keyup)="calculateCostBaseOnPayout(payout.value,bet.selctionOdds,bet.id)" (click)="calculateCostBaseOnPayout(payout.value,bet.selctionOdds,bet.id)"  value="{{bet.payout}}" class="form-control stake-input-box input-sm ng-pristine ng-valid ng-touched spinner"  min="1" type="number">
                                 </label>
                               </div>
                           </div>

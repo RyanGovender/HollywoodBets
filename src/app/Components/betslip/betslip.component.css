@@ -52,3 +52,15 @@
 .table-primary{
     opacity: 0.5!important;
 }
+
+.spinner{
+    background-color: #333333;
+    color: white;
+    border-radius: 0px;
+    border-color: #333333;
+
+}
+
+.bg-warning{
+    background-color: #f0ad4e!important;
+}

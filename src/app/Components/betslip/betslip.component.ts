@@ -50,7 +50,7 @@ export class BetslipComponent implements OnInit {
  }
 
  getColor(warning:boolean){
-   return warning ? 'warning' : 'white';
+   return warning ? 'warning' : 'dark';
  }
 
  getRowColour(id:number){
