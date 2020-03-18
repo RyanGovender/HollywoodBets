@@ -53,9 +53,6 @@
                         </div>
                       </div>
                     </div>
-                <div *ngIf="count >= 1">
-                    <button type="button" (click)="clearBetSlip();"  class="btn btn-danger mt-2" style="background-color: transparent;border-radius: 10px;min-width: 100%!important;">Clear</button>
-                </div>
             </div>
         </div>
         <div *ngIf ="count > 1">
@@ -117,21 +114,20 @@
                             </div>
                       </div>
                      
-                      <div class="row ml-2">
-                        <div class="col-md-6">
-                          <label style="font-size:small;">
-                              Stake : R  <input #betSlipStake (keyup)="calculateMutiplePayoutBaseOnStake(betSlipStake.value)" value="{{multipleStake}}" style="max-width: 50px;">
-                             </label>
-                        </div>
-                        <div class="col-md-6">
-                          <label style="font-size:small;">  
-                              Payout : R                                                  
-                              <input #betSlipPayout (keyup)="calculateStakeBaseonPayout(betSlipPayout.value)" value="{{multiplePayout}}" style="max-width: 50px;">
-                          </label>
-                        </div>
-                    </div>
-
-
+<div class="row">
+    <div class="col-md-6">
+                                
+        <label style="font-size:small;">
+            Stake : R  <input appcurrencyformatter="" #betSlipStake (keyup)="calculateMutiplePayoutBaseOnStake(betSlipStake.value)" (click)="calculateMutiplePayoutBaseOnStake(betSlipStake.value)" value="{{multipleStake}}" class="form-control stake-input-box input-sm ng-pristine ng-valid ng-touched spinner"  min="1" type="number" >
+           </label>
+      </div>
+      <div class="col-md-6">
+        <label style="font-size:small;">
+            Payout : R 
+            <input appcurrencyformatter="" #betSlipPayout (keyup)="calculateStakeBaseonPayout(betSlipPayout.value)" (click)="calculateStakeBaseonPayout(betSlipPayout.value)"  value="{{multiplePayout}}" class="form-control stake-input-box input-sm ng-pristine ng-valid ng-touched spinner"  min="1" type="number">
+        </label>
+      </div>
+</div>
                   </div>
             </div>
         </div>

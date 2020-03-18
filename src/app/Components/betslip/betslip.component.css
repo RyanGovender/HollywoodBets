@@ -29,6 +29,7 @@
 }
 .betSlipOverflow{
     overflow-y: auto!important;
+    overflow-x: hidden!important;
     max-height: 500px!important;
     min-width: 100%;
     scrollbar-width: thin!important;
