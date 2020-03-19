@@ -51,7 +51,7 @@
 }
 
 .table-primary{
-    opacity: 0.5!important;
+    background-color: #145377!important;
 }
 
 .spinner{
@@ -64,4 +64,8 @@
 
 .bg-warning{
     background-color: #f0ad4e!important;
+}
+
+.table-primary, .table-primary > th, .table-primary > td {
+    background-color: #145377;
 }

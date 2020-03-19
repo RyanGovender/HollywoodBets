@@ -8,6 +8,7 @@ import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { BetslipComponent } from './Components/betslip/betslip.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { TodaysSoccerComponent } from './Components/todays-soccer/todays-soccer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,7 +16,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     SidenavComponent,
     DashboardComponent,
     BetslipComponent,
-    FooterComponent
+    FooterComponent,
+    TodaysSoccerComponent
   ],
   imports: [
     HttpClientModule,
