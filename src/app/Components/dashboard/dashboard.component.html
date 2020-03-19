@@ -1,52 +1,5 @@
-
-
-    <div class="col-md-12">
-      <app-todays-soccer></app-todays-soccer>
-      <!-- <div class="container">
-        <div class="row heroImage">
-          <div class="card bg-dark text-white"  style="border-radius: 0px;">
-            <img class="card-img"  style="border-radius: 0px;" src="https://hollywoodmedia.hollywoodbets.net/images/cms/new-website/images/raf.png" alt="">
-            <div class="card-img-overlay">
-            </div>
-          </div>
-      </div>
-      </div>
-        <div class="row">
-          <div class="col-md-6 mt-2 betCard2" style="padding-bottom: 10px;border-color: white; color: white;">
-            <table class="table table-dark text-white" style="width: 100%;">
-              <thead>
-                <tr style="background-color: #333333 ;max-height: 25px!important;" >
-                  <th scope="col">Todays Soccer</th>
-                </tr>
-              </thead>
-              <tr *ngFor="let soccergame of soccerMatches | slice: 0:4" style="background: #333333;">
-                <p style="font-size: small!important;padding: 0rem!important;">{{soccergame.time}} &nbsp;&nbsp; <img src="https://www.countryflags.io/{{soccergame.countryCode}}/flat/16.png"> &nbsp; {{soccergame.leagueName}}</p>
-                <div class="btn-group w-100" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-secondary btnGroup" style="background: #212121;" (click) = "addEventToBetSlip(soccergame,soccergame.homeTeam,soccergame.homePrice);">{{soccergame.homeTeam}} {{soccergame.homePrice}}</button>
-                    <button type="button" class="btn btn-secondary btnGroup" style="background: #212121;border-right: 2px solid black!important;border-left: 1px solid black!important" (click) = "addEventToBetSlip(soccergame,'Draw',soccergame.draw);">Draw {{soccergame.draw}}</button>
-                    <button type="button" class="btn btn-secondary btnGroup" style="background: #212121;" (click) = "addEventToBetSlip(soccergame,soccergame.awayTeam,soccergame.awayPrice);">{{soccergame.awayTeam}} {{soccergame.awayTeamPrice}}</button>
-                  </div>  
-              </tr>
-            </table>
-        </div>
-            <div class="col-md-6  mt-2 betCard2" style="padding-bottom: 10px;border-color: white; color: white;">
-              <table class="table table-dark text-white" style="width: 100%;">
-                <thead>
-                  <tr style="background-color: #333333 ;max-height: 25px!important;" >
-                    <th scope="col">Todays Soccer</th>
-                  </tr>
-                </thead>
-                <tr *ngFor="let soccergame of soccerMatches | slice: 4:8" style="background: #333333;">
-                  <p style="font-size: small!important;padding: 0rem!important;">{{soccergame.time}} &nbsp;&nbsp; <img src="https://www.countryflags.io/{{soccergame.countryCode}}/flat/16.png"> &nbsp; {{soccergame.leagueName}}</p>
-                  <div class="btn-group w-100" role="group" aria-label="Basic example">
-                      <button type="button" class="btn btn-secondary btnGroup" style="background: #212121;" (click) = "addEventToBetSlip(soccergame,soccergame.homeTeam,soccergame.homePrice);">{{soccergame.homeTeam}} {{soccergame.homePrice}}</button>
-                      <button type="button" class="btn btn-secondary btnGroup" style="background: #212121;border-right: 2px solid black!important;border-left: 1px solid black!important" (click) = "addEventToBetSlip(soccergame,'Draw',soccergame.draw);">Draw {{soccergame.draw}}</button>
-                      <button type="button" class="btn btn-secondary btnGroup" style="background: #212121;" (click) = "addEventToBetSlip(soccergame,soccergame.awayTeam,soccergame.awayPrice);">{{soccergame.awayTeam}} {{soccergame.awayTeamPrice}}</button>
-                    </div>  
-                </tr>
-              </table>
-          </div>
-        </div> -->
+  <div class="col-md-12">
+      <router-outlet></router-outlet>
    </div>
 
 

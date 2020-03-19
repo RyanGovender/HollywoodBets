@@ -9,6 +9,7 @@ import { BetslipComponent } from './Components/betslip/betslip.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { TodaysSoccerComponent } from './Components/todays-soccer/todays-soccer.component';
+import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,8 @@ import { TodaysSoccerComponent } from './Components/todays-soccer/todays-soccer.
     HttpClientModule,
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
