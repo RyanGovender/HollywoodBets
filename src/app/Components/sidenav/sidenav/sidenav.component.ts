@@ -38,7 +38,7 @@ export class SidenavComponent implements OnInit {
     this.filter = new FormControl('');
     this.filter$ = this.filter.valueChanges.pipe(startWith(''));
     this.filteredSports$ = combineLatest(this.sports$, this.filter$).pipe(
-      map(([sports, filterString]) => sports.filter(movies => movies.name.toLowerCase().indexOf(filterString.toLowerCase()) !== -1))
+      map(([sports, filterString]) => sports.filter(movies => movies.sportName.toLowerCase().indexOf(filterString.toLowerCase()) !== -1))
     );
   }
 

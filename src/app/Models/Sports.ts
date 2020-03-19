@@ -1,5 +1,5 @@
 export interface Sports{
-    id:string;
-    name:string;
-    imageUrl:string;
+    sportId:number;
+    sportName:string;
+    logo:string;
 }
