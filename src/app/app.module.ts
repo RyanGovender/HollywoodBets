@@ -10,6 +10,7 @@ import { FooterComponent } from './Components/footer/footer.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { TodaysSoccerComponent } from './Components/todays-soccer/todays-soccer.component';
 import { AppRoutingModule } from './app-routing.module';
+import { CountryComponent } from './Components/country/country.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +19,8 @@ import { AppRoutingModule } from './app-routing.module';
     DashboardComponent,
     BetslipComponent,
     FooterComponent,
-    TodaysSoccerComponent
+    TodaysSoccerComponent,
+    CountryComponent
   ],
   imports: [
     HttpClientModule,
