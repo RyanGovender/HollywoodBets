@@ -11,6 +11,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { TodaysSoccerComponent } from './Components/todays-soccer/todays-soccer.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CountryComponent } from './Components/country/country.component';
+import { TournamentComponent } from './Components/tournament/tournament.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +21,8 @@ import { CountryComponent } from './Components/country/country.component';
     BetslipComponent,
     FooterComponent,
     TodaysSoccerComponent,
-    CountryComponent
+    CountryComponent,
+    TournamentComponent
   ],
   imports: [
     HttpClientModule,

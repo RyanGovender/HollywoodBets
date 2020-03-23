@@ -13,6 +13,7 @@ export class CountryComponent implements OnInit {
 
   constructor(private countryService:CountryService,private route: ActivatedRoute) { }
   arrayCountries:Observable<Country[]>;
+  selectedCountry:any;
 
   ngOnInit(): void {
    this.GetAllCountries();
@@ -20,11 +21,7 @@ export class CountryComponent implements OnInit {
 
   ngDoCheck()
   {
-    if(this.countryService.onClick)
-    {
-      this.GetAllCountries();
-      this.countryService.onClick = false;
-    }
+    this.countryRefresh();
   }
 
   GetAllCountries()
@@ -33,6 +30,20 @@ export class CountryComponent implements OnInit {
     return this.countryService.GetAllCountriesBasedOnSport(sportId).subscribe((data:any)=>{
     this.arrayCountries = data;
     })
+  }
+
+  countryRefresh()
+  {
+    if(this.countryService.onClick)
+    {
+      this.GetAllCountries();
+      this.countryService.onClick = false;
+    }
+  }
+
+  onSelected(data:any)
+  {
+     this.selectedCountry = data;
   }
 
 

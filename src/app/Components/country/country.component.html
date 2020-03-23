@@ -1,5 +1,10 @@
+
+<app-tournament></app-tournament>
 <div class="row">
-    <div *ngFor="let country of arrayCountries">
+    <div *ngFor="let country of arrayCountries"
+    [class.selected]="country === selectedCountry"
+    (click)="onSelected(country)"
+    >
        <a href="" class="text-white">
         <div class="media ml-1 p-2 mt-3 mb-2" style="background-color: #1e1e1e;border-radius: 5px;min-width: 200px!important;">
             <a class="d-flex" href="#">
