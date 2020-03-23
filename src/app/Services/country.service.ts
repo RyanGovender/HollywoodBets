@@ -11,7 +11,8 @@ export class CountryService {
 
   constructor(private http:HttpClient) { }
 
-  private _url = 'https://localhost:44330/api/sportcountry?id='; 
+  private _url = 'https://localhost:44330/api/sportcountry?sportId='; 
+  onClick = false;
   GetAllCountriesBasedOnSport(sportId:number):Observable<Country[]>
   {
      return this.http.get<Country[]>(this._url+sportId);

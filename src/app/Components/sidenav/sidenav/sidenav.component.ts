@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 import { SideNavService } from 'src/app/Services/side-nav.service';
 import { Sports } from 'src/app/Models/Sports';
 import { Observable,combineLatest } from 'rxjs';
@@ -6,6 +6,8 @@ import {FormControl} from '@angular/forms';
 import {
   debounceTime, distinctUntilChanged, switchMap, startWith, map
 } from 'rxjs/operators';
+import { CountryService } from 'src/app/Services/country.service';
+
 
 @Component({
   selector: 'app-sidenav',
@@ -19,11 +21,16 @@ export class SidenavComponent implements OnInit {
   filteredSports$:Observable<Sports[]>;
   filter: FormControl;
   filter$:Observable<string>;
+  
 
-  constructor(private sidenavService:SideNavService) { }
-
+  constructor(private sidenavService:SideNavService,private countryService:CountryService) { }
   ngOnInit(): void {
     this.sideNavSearch();
+  }
+
+  onClick()
+  {
+    this.countryService.onClick = true;
   }
 
   GetAllSports(){
