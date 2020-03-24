@@ -39,6 +39,10 @@ export class SidenavComponent implements OnInit {
     })
   }
 
+  removeSpaceFromSportType(sportName:string)
+  {
+    return sportName.trim().replace(' ','-').toLocaleLowerCase();
+  }
   sideNavSearch()
   {
     this.sports$ = this.sidenavService.getSports();

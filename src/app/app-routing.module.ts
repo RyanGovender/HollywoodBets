@@ -9,7 +9,7 @@ import { from } from 'rxjs';
 
 const routes:Routes =[
   {path: 'dashboard', component:DashboardComponent},
-  {path:'country/:sportId',component:CountryComponent},
+  {path:'country/:sportId/:sportName',component:CountryComponent},
   {path: 'todays-soccer', component:TodaysSoccerComponent},
   {path: 'betslip', component:BetslipComponent},
   {path:'', redirectTo: '/todays-soccer', pathMatch: 'full'}

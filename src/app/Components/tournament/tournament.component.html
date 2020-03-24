@@ -1,9 +1,29 @@
-<p>tournament works!</p>
-<div *ngFor ="let tournament of tournaments">
-    <div class="card">
+<!-- <div *ngFor ="let tournament of finalTournaments">
+    <div class="card mt-1">
         <div class="card-body">
-            <h4 class="card-title">{{tournament.tournamentId}}</h4>
-            <p class="card-text">{{tournament.tournamentName}}</p>
+            <h4 class="card-title">{{tournament.country.countryName}}</h4>
+             <div *ngFor="let country of tournament.tournaments">
+                 <p>{{country.tournamentName}}</p>
+             </div>
         </div>
     </div>
+</div> -->
+
+<div  *ngFor ="let tournament of finalTournaments">
+<div class="row">
+    <a class="text-white">
+        <div class="media ml-1 p-2 mt-3=1 mb-2" style="background-color: #1e1e1e;border-radius: 5px;min-width: 200px!important;">
+            <a class="d-flex" >
+                <img src="https://www.countryflags.io/{{tournament.country.iconCode}}/flat/24.png" alt="">
+            </a>
+            <div class="media-body">
+                <h5>{{tournament.country.countryName}}</h5>
+                        <div class="row" *ngFor="let country of tournament.tournaments">
+                            <p>{{country.tournamentName}}</p>
+                </div>
+            </div>
+        </div>
+       </a>
 </div>
+</div>
+
