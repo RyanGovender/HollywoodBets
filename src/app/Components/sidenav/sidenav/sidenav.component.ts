@@ -23,18 +23,18 @@ export class SidenavComponent implements OnInit {
   filter$:Observable<string>;
   
 
-  constructor(private sidenavService:SideNavService,private countryService:CountryService) { }
+  constructor(private countryService:CountryService) { }
   ngOnInit(): void {
     this.sideNavSearch();
   }
 
   onClick()
   {
-    this.countryService.onClick = true;
+    this.countryService.clearList();
   }
 
   GetAllSports(){
-      return this.sidenavService.getSports().subscribe( (data:any)=>{
+      return this.countryService.getSports().subscribe( (data:any)=>{
       this.arraySports = data;
     })
   }
@@ -45,7 +45,7 @@ export class SidenavComponent implements OnInit {
   }
   sideNavSearch()
   {
-    this.sports$ = this.sidenavService.getSports();
+    this.sports$ = this.countryService.getSports();
     this.filter = new FormControl('');
     this.filter$ = this.filter.valueChanges.pipe(startWith(''));
     this.filteredSports$ = combineLatest(this.sports$, this.filter$).pipe(
