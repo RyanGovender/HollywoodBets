@@ -1,5 +1,5 @@
 
-<app-tournament [selectedCountry]="selectedCountry"></app-tournament>
+<app-tournament [selectedCountry]="selectedCountry" [tempValue]="tempValue" ></app-tournament>
 <div class="row">
     <div *ngFor="let country of arrayCountries"
     [class.selected]="country === selectedCountry"

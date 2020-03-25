@@ -1,67 +1,28 @@
-<!-- <div *ngFor ="let tournament of finalTournaments">
-    <div class="card mt-1">
-        <div class="card-body">
-            <h4 class="card-title">{{tournament.country.countryName}}</h4>
-             <div *ngFor="let country of tournament.tournaments">
-                 <p>{{country.tournamentName}}</p>
-             </div>
-        </div>
-    </div>
-</div> -->
-<!-- 
-<div  *ngFor ="let tournament of finalTournaments">
-<div class="row">
-    <a class="text-white">
-        <div class="media ml-1 p-2 mt-3=1 mb-2" style="background-color: #1e1e1e;border-radius: 5px;min-width: 200px!important;">
-            <a class="d-flex" >
-                <img src="https://www.countryflags.io/{{tournament.country.iconCode}}/flat/24.png" alt="">
-            </a>
-            <div class="media-body" >
-                <div class="row">
-                <h5>{{tournament.country.countryName}}</h5>
-                        <div *ngFor="let country of tournament.tournaments">
-                           <div class="media mt-1" style="background-color: blue;">
-                               <a class="d-flex" >
-                                <div class="media-body">
-                                    <h5> {{country.tournamentName}}</h5>
-                                </div>
-                               </a>
-                           </div>
-                        </div>
-                    </div>
-            </div>
-        </div>
-       </a>
-</div>
-</div> -->
-<div class="col-md-12">
+<div class="col-md-12" >
     <div  *ngFor ="let tournament of finalTournaments">
         <div class="media mt-1 text-white p-3" style="background-color: #1e1e1e;">
-           
             <div class="media-body">
-                <button type="button" class="close"  aria-label="Close" (click)="remove(tournament);" >
+                <button type="button" class="close"  aria-label="Close" (click)="removeCountryFromList(tournament);" >
                     <span aria-hidden="true" style="color: red!important;">&times;</span>
                   </button>
-                <div class="row ml-2">
-                    <div class="col-md-3">
+                <div class="row ml-2" >
+                    <div class="col-md-4">
                         <a class="d-flex" >
                             <img src="https://www.countryflags.io/{{tournament.country.iconCode}}/flat/24.png" alt="">
                             <h6 class="ml-2">
                                 {{tournament.country.countryName}}
                                </h6>
                         </a>
-                      
                     </div>
                 <div *ngFor="let country of tournament.tournaments">
                     <div class="col-md-12">
                         <div class="media-body p-2" style="background-color: #333333;">
                             <small>
+                                <input type="checkbox">
                                 {{country.tournamentName}}
                               </small>
                         </div>
-                   
-                    </div>
-                
+                       </div>
                     </div>
                 </div>
             </div>

@@ -12,8 +12,10 @@ import { Observable } from 'rxjs';
 export class CountryComponent implements OnInit {
 
   constructor(private countryService:CountryService,private route: ActivatedRoute) { }
+
   arrayCountries:Observable<Country[]>;
   selectedCountry:any;
+  tempValue=0;
 
   ngOnInit(): void {
    this.GetAllCountries();
@@ -24,7 +26,16 @@ export class CountryComponent implements OnInit {
     this.countryRefresh();
   }
 
-  GetAllCountries()
+  countryRefresh()//everytime a user clicks a sport on the side nav. OnClick becomes true and then it will hit the api tp get all the sports based on the sportId they chose.
+  {
+    if(this.countryService.onClick)
+    {
+      this.GetAllCountries();
+      this.countryService.onClick = false; //changes onClick to false so the method does not hit the api unless the user chooses a new sport
+    }
+  }
+
+  GetAllCountries() // Gets sports based on a sportId choosen by the user.
   {
     var sportId =+this.route.snapshot.paramMap.get('sportId');
     return this.countryService.GetAllCountriesBasedOnSport(sportId).subscribe((data:any)=>{
@@ -32,21 +43,9 @@ export class CountryComponent implements OnInit {
     })
   }
 
-  countryRefresh()
+  onSelected(data:any) // passes the selectedCountry value to the tournament component(child).
   {
-    if(this.countryService.onClick)
-    {
-      this.GetAllCountries();
-      this.countryService.onClick = false;
-    }
+    this.selectedCountry = data;
+    this.tempValue++;
   }
-
-  onSelected(data:any)
-  {
-     this.selectedCountry = data;
-  }
-
-
-
-
 }
