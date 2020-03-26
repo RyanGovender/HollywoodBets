@@ -12,6 +12,7 @@ import { TodaysSoccerComponent } from './Components/todays-soccer/todays-soccer.
 import { AppRoutingModule } from './app-routing.module';
 import { CountryComponent } from './Components/country/country.component';
 import { TournamentComponent } from './Components/tournament/tournament.component';
+import { EventComponent } from './Components/event/event.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,8 @@ import { TournamentComponent } from './Components/tournament/tournament.componen
     FooterComponent,
     TodaysSoccerComponent,
     CountryComponent,
-    TournamentComponent
+    TournamentComponent,
+    EventComponent
   ],
   imports: [
     HttpClientModule,

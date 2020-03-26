@@ -16,6 +16,7 @@ export class CountryComponent implements OnInit {
   arrayCountries:Observable<Country[]>;
   selectedCountry:any;
   tempValue=0;
+  private _nameOfSportId ='sportId';
 
   ngOnInit(): void {
    this.GetAllCountries();
@@ -37,7 +38,7 @@ export class CountryComponent implements OnInit {
 
   GetAllCountries() // Gets sports based on a sportId choosen by the user.
   {
-    var sportId =+this.route.snapshot.paramMap.get('sportId');
+    var sportId =+this.route.snapshot.paramMap.get(this._nameOfSportId);
     return this.countryService.GetAllCountriesBasedOnSport(sportId).subscribe((data:any)=>{
     this.arrayCountries = data;
     })

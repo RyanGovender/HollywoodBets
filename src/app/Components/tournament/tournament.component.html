@@ -16,7 +16,7 @@
                     </div>
                 <div *ngFor="let country of tournament.tournaments">
                     <div class="col-md-12">
-                        <div class="media-body p-2" style="background-color: #333333;">
+                        <div class="media-body p-2" style="background-color: #333333;" routerLink="event/{{country.tournamentId}}/{{removeSpaceFromTournament(country.tournamentName)}}">
                             <small>
                                 <input type="checkbox">
                                 {{country.tournamentName}}

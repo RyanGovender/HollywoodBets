@@ -30,18 +30,17 @@ export class TournamentComponent {
 
  
   tournaments:Tournament[];
-  _value:CountryTournament;
   finalTournaments:any[];
+  private _value:CountryTournament;
   private _previousSelectedCountryValue:any;
-  private _sportId = +this.route.snapshot.paramMap.get('sportId');
+  private _nameOfSportId ='sportId';
   
-
   constructor(private tournamentService:TournamentService,private route: ActivatedRoute) { }
 
     ngOnChanges()
     {
          this.checkIfSelectedCountryUndefined();
-         this.getAddData(this.selectedCountry,this._sportId);
+         this.getAddData(this.selectedCountry,this.getSportId());
          this.finalTournaments = this.tournamentService.tournamentsList; //refreshes the list after each change to the modal.
     }
 
@@ -51,9 +50,13 @@ export class TournamentComponent {
       this._previousSelectedCountryValue = this.selectedCountry;
     }
 
+    getSportId():number // gets the sportId for the url based on the sport the user chose.
+    {
+       return +this.route.snapshot.paramMap.get(this._nameOfSportId);
+    }
+
     getAddData(country:any,id:number) // hits the api and returns the tournaments based on sport and country. Then it calls the add method to add this data to the array.
     {
-        if(this.selectedCountry !=null )
         return this.tournamentService.getTournamentsBasedOnSportAndCountry(id,country.countryId).subscribe((data:any)=>{
         this.tournaments = data;
         this.addToList(this.selectedCountry,data);
@@ -74,4 +77,8 @@ export class TournamentComponent {
     {
       this.tournamentService.removeCountry(country);
     }
+    removeSpaceFromTournament(sportName:string)
+  {
+    return sportName.trim().replace(' ','-').toLocaleLowerCase();
+  }
 }
