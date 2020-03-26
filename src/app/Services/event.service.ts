@@ -12,7 +12,7 @@ export class EventService {
 
   constructor(private _http:HttpClient) { }
 
-  getAllEventsForTournament(tournamentId:number):Observable<Event[]>
+  getAllEventsForTournament(tournamentId:number):Observable<Event[]>//Get the data back from the api
   {
       return this._http.get<Event[]>(this._url+this.params1+tournamentId);
   }
