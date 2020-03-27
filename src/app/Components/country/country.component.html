@@ -1,6 +1,6 @@
 
 <app-tournament [selectedCountry]="selectedCountry" [tempValue]="tempValue" ></app-tournament>
-<div class="row">
+<div class="row ml-2">
     <div *ngFor="let country of arrayCountries"
     [class.selected]="country === selectedCountry"
     (click)="onSelected(country)"

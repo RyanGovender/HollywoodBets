@@ -1,4 +1,38 @@
-<div class="col-md-12">
+
+  <div class="col-md-12">
+    <table class="table fitpage text-white">
+        <thead class="thead" style="background-color: #004369;    padding: 0%!important;">
+          <tr style="padding: 0%!important;">
+            <th ></th>
+            <th></th>
+            <th></th>
+            <th class="d-flex justify-content-end" style="padding: 0%!important;">
+                <div class="btn-group" style="padding: 0%!important;">
+                    <button type="button" class="btn btn-danger dropdown-toggle" style="border-radius: 0px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     {{itemOne}}
+                    </button>
+                    <div class="dropdown-menu">
+                        <div *ngFor="let bet of betTypes">
+                            <a class="dropdown-item" href="#">{{bet.betTypeName}}</a>
+                        </div>
+                    </div>
+                  </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+                <tr *ngFor="let event of events"  style="background-color: #333333!important;">
+                    <th scope="row" style="min-width:100%!important">{{event.eventDate | date: "HH:mm"}}</th>
+                    <td><small>{{event.eventName}} </small> </td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+        </tbody>
+      </table>
+  </div>
+ 
+  
+<!-- <div class="col-md-12">
         <div *ngFor="let event of events">
             <div class="row">
             <div class="card mt-1 text-white" style="min-width: 100%!important;background-color: #1e1e1e;">
@@ -11,6 +45,5 @@
             </div>
       </div>    
     </div>
-</div>
-
- 
+    
+</div> -->
