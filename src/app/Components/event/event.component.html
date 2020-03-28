@@ -1,14 +1,22 @@
 
   <div class="col-md-12">
     <table class="table fitpage text-white">
-        <thead class="thead" style="background-color: #004369;    padding: 0%!important;">
+        <thead class="thead" style="background-color: #643e94;    padding: 0%!important;">
           <tr style="padding: 0%!important;">
-            <th ></th>
-            <th></th>
+            <th *ngIf="country">
+              <a class="d-flex" >
+                <img src="https://www.countryflags.io/{{country.iconCode}}/flat/24.png" alt="">
+            </a>
+            </th>
+            <th *ngIf="tournament"   >
+              <a class="d-flex" >
+                {{tournament.tournamentName}}
+              </a>
+            </th>
             <th></th>
             <th class="d-flex justify-content-end" style="padding: 0%!important;">
                 <div class="btn-group" style="padding: 0%!important;">
-                    <button type="button" class="btn btn-danger dropdown-toggle" style="border-radius: 0px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button type="button" class="btn btn-danger dropdown-toggle" style="border-radius: 0px;min-height: 55px;background-color: #643e94;border-color: #643e94;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                      {{itemOne}}
                     </button>
                     <div class="dropdown-menu">
@@ -32,18 +40,3 @@
   </div>
  
   
-<!-- <div class="col-md-12">
-        <div *ngFor="let event of events">
-            <div class="row">
-            <div class="card mt-1 text-white" style="min-width: 100%!important;background-color: #1e1e1e;">
-              <div class="card-header">
-                  {{event.eventDate | date : "EEEE, MMMM d, y"}}
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">{{event.eventName}}</h5>
-              </div>
-            </div>
-      </div>    
-    </div>
-    
-</div> -->
