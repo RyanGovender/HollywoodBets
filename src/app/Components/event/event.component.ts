@@ -4,6 +4,7 @@ import { EventService } from 'src/app/Services/event.service';
 import { BetType } from 'src/app/Models/BetType';
 import { Tournament } from 'src/app/Models/Tournament';
 import { Country } from 'src/app/Models/Country';
+import { Market } from 'src/app/Models/Market';
 
 @Component({
   selector: 'app-event',
@@ -18,6 +19,7 @@ export class EventComponent implements OnInit {
   itemOne:string;
   tournament:Tournament;
   country:Country;
+  markets:any;
   constructor(private route: ActivatedRoute,private eventService:EventService) { }
 
   ngOnInit(): void {
@@ -25,6 +27,7 @@ export class EventComponent implements OnInit {
     this.getBetTypes();
     this.getTournamentDetails();
     this.getCountry();
+     // fix for sports that have one market/ no markets yet..
   }
 
   getEvents() // gets all events for that tournament.
@@ -42,6 +45,7 @@ export class EventComponent implements OnInit {
       (data:any)=>{
         this.betTypes = data;
         this.itemOne = this.betTypes[0].betTypeName;
+        this.getMarketsBasedOnBetType(this.betTypes[0].betTypeId);
       }
     );
   }
@@ -50,7 +54,7 @@ export class EventComponent implements OnInit {
   {
     return +this.route.snapshot.paramMap.get(this._tournamentId);
   }
-
+  
   getTournamentDetails() // gets the details of the tournaments
   {
      this.eventService.getTournament(this.getTournamentId()).subscribe(
@@ -59,6 +63,7 @@ export class EventComponent implements OnInit {
        }
      );
   }
+
 getCountry() //gets the country of where the tournament is held.
 {
   this.eventService.getCountry(this.getTournamentId()).subscribe(
@@ -66,5 +71,15 @@ getCountry() //gets the country of where the tournament is held.
       this.country = data;
     }
   );
+}
+
+getMarketsBasedOnBetType(betType:number) // get the markets based on what bet type the user choose.
+{
+  this.eventService.getMarkets(betType).subscribe(
+    (data:any)=>{
+     this.markets = data;
+    }
+  );
+  this.itemOne = this.betTypes[betType-1].betTypeName;//set the dropdown to current item
 }
 }

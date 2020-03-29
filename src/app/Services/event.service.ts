@@ -5,6 +5,7 @@ import { BetType } from '../Models/BetType';
 import { threadId } from 'worker_threads';
 import { Tournament } from '../Models/Tournament';
 import { Country } from '../Models/Country';
+import { Market } from '../Models/Market';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,11 @@ export class EventService {
   getCountry(tournamentId:number):Observable<Country>// gets the country the tournament is held in.. used for displying country flag
   {
     return this._http.get<Country>(this.generateUrl(this._getCountry,tournamentId));
+  }
+
+  getMarkets(betTypeId:number):Observable<Market[]>
+  {
+    return this._http.get<Market[]>(this._url+'event/GetMarkets?betTypeId='+betTypeId);
   }
 
   private generateUrl(apiLocation:string,tournamentId:number):string //creates the url to hit the api based on default values and two params.
