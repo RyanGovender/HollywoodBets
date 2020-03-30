@@ -27,7 +27,6 @@ export class EventComponent implements OnInit {
     this.getBetTypes();
     this.getTournamentDetails();
     this.getCountry();
-     // fix for sports that have one market/ no markets yet..
   }
 
   getEvents() // gets all events for that tournament.
@@ -81,5 +80,16 @@ getMarketsBasedOnBetType(betType:number) // get the markets based on what bet ty
     }
   );
   this.itemOne = this.betTypes[betType-1].betTypeName;//set the dropdown to current item
+}
+
+setMarketTypeName(eventName:string,marketType:string):string // replaces home or away and add team names
+{
+    var teamName = eventName.split('vs');
+    if(marketType.includes('Home')) marketType =  marketType.replace('Home',teamName[0]);
+
+    if(marketType.includes('Away')) marketType = marketType.replace('Away',teamName[1]);
+
+     return marketType;
+ 
 }
 }

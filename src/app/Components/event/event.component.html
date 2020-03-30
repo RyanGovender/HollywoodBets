@@ -33,7 +33,9 @@
                     <td><small>{{event.eventName}} </small> </td>
                     <td>
                       <div class="btn-group" role="group" aria-label="Basic example">
-                        <button *ngFor="let market of markets" type="button" class="btn btn-outline-primary" style="border-color: #643e94;color: #643e94;">{{market.marketName}}</button>
+                        <button *ngFor="let market of markets" type="button" class="btn btn-outline-primary" style="border-color: #643e94;color: #643e94;"><small>
+                          {{setMarketTypeName(event.eventName,market.marketName)}}
+                        </small></button>
                       </div>
                     </td>
                     <td></td>
@@ -43,3 +45,37 @@
   </div>
  
   
+   <!-- <div class="container">
+    <h2>Basic Table</h2>
+    <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>            
+    <table class="table fitpage text-white">
+      <thead>
+        <tr>
+          <th *ngIf="country"> <a class="d-flex" >
+            <img src="https://www.countryflags.io/{{country.iconCode}}/flat/24.png" alt="">
+        </a>
+       
+      </th>
+          <th>Lastname</th>
+        
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>JohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohn</td>
+          <td>Doe</td>
+         
+        </tr>
+        <tr>
+          <td>Mary</td>
+          <td>Moe</td>
+        
+        </tr>
+        <tr>
+          <td>July</td>
+          <td>Dooley </td>
+         
+        </tr>
+      </tbody>
+    </table>
+  </div> -->
