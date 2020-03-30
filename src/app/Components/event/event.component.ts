@@ -84,12 +84,11 @@ getMarketsBasedOnBetType(betType:number) // get the markets based on what bet ty
 
 setMarketTypeName(eventName:string,marketType:string):string // replaces home or away and add team names
 {
-    var teamName = eventName.split('vs');
+    var teamName = eventName.split('vs'); //splits by the word vs and saves home team [0] and away team[1]
     if(marketType.includes('Home')) marketType =  marketType.replace('Home',teamName[0]);
 
     if(marketType.includes('Away')) marketType = marketType.replace('Away',teamName[1]);
 
      return marketType;
- 
 }
 }
