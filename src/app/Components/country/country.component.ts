@@ -13,9 +13,10 @@ export class CountryComponent implements OnInit {
 
   constructor(private countryService:CountryService,private route: ActivatedRoute) { }
 
-  arrayCountries:Observable<Country[]>;
+  arrayCountries:Country[];
   selectedCountry:any;
   tempValue=0;
+  countryLen = 0;
   private _nameOfSportId ='sportId';
 
   ngOnInit(): void {
@@ -41,6 +42,14 @@ export class CountryComponent implements OnInit {
     var sportId =+this.route.snapshot.paramMap.get(this._nameOfSportId);
     return this.countryService.GetAllCountriesBasedOnSport(sportId).subscribe((data:any)=>{
     this.arrayCountries = data;
+    if(data!=undefined)
+    {
+      this.countryLen = this.arrayCountries.length;
+    }
+    else
+    {
+      this.countryLen = 0;
+    }
     })
   }
 

@@ -1,5 +1,5 @@
   <div class="col-md-12">
-    <table class="table fitpage text-white">
+    <table class="table fitpage text-white" style="min-width: 100%!important;">
         <thead class="thead" style="background-color: #643e94;    padding: 0%!important;">
           <tr style="padding: 0%!important;">
             <th *ngIf="country">
@@ -20,7 +20,7 @@
                     </button>
                     <div class="dropdown-menu">
                         <div *ngFor="let bet of betTypes">
-                            <a class="dropdown-item " (click)="getMarketsBasedOnBetType(bet.betTypeId)">{{bet.betTypeName}}</a>
+                            <a class="dropdown-item " (click)="getMarketsBasedOnBetType(bet)">{{bet.betTypeName}}</a>
                         </div>
                     </div>
                   </div>
@@ -28,15 +28,24 @@
           </tr>
         </thead>
         <tbody>
+          <tr *ngIf="eventLen == 0">
+             <td>
+              <small>No events avaliable for this tournament</small>
+             </td>
+          </tr>
                 <tr *ngFor="let event of events"  style="background-color: #333333!important;">
-                    <th scope="row" style="min-width:100%!important">{{event.eventDate | date: "HH:mm"}}</th>
+                    <th scope="row" style="min-width:100%!important"><small>{{event.eventDate | date: "short"}}</small></th>
                     <td><small>{{event.eventName}} </small> </td>
                     <td>
-                      <div class="btn-group" role="group" aria-label="Basic example">
-                        <button *ngFor="let market of markets" type="button" class="btn btn-outline-primary BtnOverflow"  data-toggle="tooltip" data-placement="bottom" title="{{setMarketTypeName(event.eventName,market.marketName)}}"><small>
-                          {{setMarketTypeName(event.eventName,market.marketName)}}
-                        </small></button>
+                      <div class="">
+                        <div class="col-md-12 btn-group btnGroupShrink" role="group" aria-label="Basic example" style="min-width:200%!important">
+                          {{getMarketsForEvent(event.eventId)}}
+                          <button *ngFor="let market of displayMarket" type="button" class="btn btn-outline-primary BtnOverflow" (click)="addEventToBetSlip(event,market.marketName,market.odds);" style="color: white!important;"  data-toggle="tooltip" data-placement="bottom" title="{{setMarketTypeName(event.eventName,market.marketName)}} {{market.odds}}"><small>
+                            {{setMarketTypeName(event.eventName,market.marketName)}} {{market.odds}}
+                          </small></button>
+                        </div>
                       </div>
+                     
                     </td>
                     <td></td>
                   </tr>

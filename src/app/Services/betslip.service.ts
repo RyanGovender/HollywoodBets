@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { betSlip } from '../Models/betslip';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { TestData } from '../Models/TestData';
+import { Event } from '../Models/Event';
+import { PunterBetSlip, BetSlipViewModel } from '../Models/BetSlipViewModel';
+import { of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +17,47 @@ export class BetslipService {
   _idCounter=1;
   _value: betSlip;
   realtedBetsSlipId =[];
-
+betConfirmationMessage:string;
 
   multipleStake:number;
   multiplePayout:number;
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
+  PostToDb(betslip:PunterBetSlip)
+  {
+    for(let i=0;i< this.item.length;i++)
+    {
+      const element = this.item[i];
+      element.event = this.convertBetToEventInBetSlip(element.event);
+    }
+
+    const finalbetSlip :BetSlipViewModel ={
+      betslips:this.item,
+      punterBetSlip:betslip
+    }
+
+  return this.http.post<betSlip>('https://localhost:44330/api/betslip/Post',finalbetSlip).pipe(
+    catchError(this.handleError)
+  );
+  }
+
+  convertBetToEventInBetSlip(bet:any)
+  {
+      const event :Event ={
+        tournamentID:bet.homePrice,
+        eventID:bet.id,
+        eventName:this.concatinateEventName(bet.homeTeam,bet.awayTeam),
+        eventDate:bet.time
+      };
+
+      return event;
+  }
+
+  concatinateEventName(home:string,away:String)
+  {
+    return away!=null? `${home} vs ${away}`:home;
+  }
 
   calculateMutiplePayout(punterStake:number, finalOdds:number)
   {
@@ -30,13 +69,13 @@ export class BetslipService {
     return this.multipleStake = Math.round(Number((punterPayout/finalOdds)*100))/100
   }
 
-  addToBetSlip(bet:any,punterchoice:string,odds:number)
+  addToBetSlip(bet:any,punterchoice:string,odds:number,typeOfSport:string)
   {
     if(!this.checkIfBetExist(bet,punterchoice))
     {
       this._value ={
         id:this._idCounter,
-        typeOfEvent:'Soccer',
+        typeOfEvent:typeOfSport,
         event:bet,
         punterBetSelection:punterchoice,
         selctionOdds:odds,
@@ -46,6 +85,8 @@ export class BetslipService {
         payout:0
       };
       this.item.push(this._value);
+      console.log(this._value);
+
       this._idCounter++;
       this.updateBetId();
       }
@@ -58,7 +99,7 @@ export class BetslipService {
       const element = this.item[index];
        if(element.event.id == bet.id && element.punterBetSelection == punterChoice )
        {
-          this.removeFromDoubleClick(bet,punterChoice);
+           this.removeFromDoubleClick(bet,punterChoice);
           _flag = true;
           break;
        }
@@ -172,5 +213,11 @@ export class BetslipService {
     return Math.round(_sumOfOdds + _mutiplicationOfOdds);
   }
 
+  handleError(error: HttpErrorResponse){
+    console.log(error.error.status);
+      return of(error.error);
+    }
+    
+  
 
 }

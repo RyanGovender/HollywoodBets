@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
 import { Country } from '../Models/Country';
 import { Sports } from '../Models/Sports';
 import { TournamentService } from './tournament.service';
+import { catchError } from 'rxjs/operators';
 
 
 @Injectable({
@@ -18,7 +19,9 @@ export class CountryService {
   onClick = false;
   GetAllCountriesBasedOnSport(sportId:number):Observable<Country[]>
   {
-     return this.http.get<Country[]>(this._url+sportId);
+     return this.http.get<Country[]>(this._url+sportId).pipe(
+       catchError(this.handleError)
+     );
   }
 
   getSports():Observable<Sports[]>
@@ -31,6 +34,11 @@ export class CountryService {
     this.onClick = true;
     this.tournamentService.clearCountryBetSlip();
   }
+
+  handleError(error: HttpErrorResponse){
+    console.log(error);
+      return of([]);
+    }
 
  
 }

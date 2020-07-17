@@ -3,6 +3,7 @@ import { BetslipService } from 'src/app/Services/betslip.service';
 import { betSlip } from 'src/app/Models/betSlip';
 import { BounusService } from 'src/app/Services/bounus.service';
 import { Bounus } from 'src/app/Models/Bounus';
+import { PunterBetSlip } from 'src/app/Models/BetSlipViewModel';
 
 @Component({
   selector: 'app-betslip',
@@ -27,8 +28,12 @@ export class BetslipComponent implements OnInit {
   finalOdds:number;
   finalPrice:number;
   bonusId:number;
-  multipleStake:number;
-  multiplePayout:number;
+  multipleStake=0;
+  multiplePayout=0;
+  successfullyBet = false;
+  unsuccessfulBet = false;
+  minStake=false;
+  betConfirmationMessage:String;
 
   ngOnInit(): void { 
     this.getAllBonus();
@@ -40,7 +45,7 @@ export class BetslipComponent implements OnInit {
     this.betslipService.checkForRelatedEvents();
     this.count>0?this.displayRelatedBetIds():null;
     this.odds = this.betslipService.calculateTotalOdds();
-   this.count>0?this.getBetSlipBonus():null;
+    this.count>0?this.getBetSlipBonus():null;
     this.calculateFinalOdds();
     
   }
@@ -57,8 +62,58 @@ export class BetslipComponent implements OnInit {
     return id==this.bonusId ? 'primary' : '';
  }
 
+ closeSuccessfulMessage()
+ {
+    this.successfullyBet = false;
+ }
+ closeUnsuccessfulMessage()
+ {
+    this.unsuccessfulBet = false;
+ }
+
+ submitBet(value:number)
+ {
+   if(value>0)
+   {
+     this.betslipService.PostToDb(this.setPunterBetSlip(value)).subscribe((value:any)=>{
+     this.betConfirmationMessage = value.status;
+     this.setBetStatus(value);
+    });
+   }
+   else{
+     this.minStake = true;
+   }
+ }
+
+ setPunterBetSlip(value)
+ {
+  const betSlip : PunterBetSlip ={
+    payout : this.multiplePayout,
+    stake:Number(value),
+    numberOfLegs:this.count,
+    accountNumber:1
+  }
+  return betSlip;
+ }
+
+ setBetStatus(value)
+ {
+  if(value.status.startsWith('B'))
+  {
+    this.successfullyBet = true;
+    this.clearBetSlip();
+  }
+  else
+  {
+    this.unsuccessfulBet = true;
+  }
+ }
+
  clearBetSlip()
  {
+   this.minStake = false;
+   this.multipleStake =0;
+   this.multiplePayout =0;
    this.betslipService.clearBetSlip();
  }
 
@@ -68,6 +123,7 @@ export class BetslipComponent implements OnInit {
 
   calculateCostBaseOnPayout(payout:number,odds,id:number)
   {
+      this.minStake = false;
       this.betslipService.calculateCostBasedOnPayout(payout,odds,id);
   }
 
@@ -121,4 +177,6 @@ export class BetslipComponent implements OnInit {
   {
     this.finalOdds = this.odds + (this.odds * this.bonus/100);
   }
+
+  
 }

@@ -5,14 +5,14 @@ import { Tournament } from 'src/app/Models/Tournament';
 import { ActivatedRoute } from '@angular/router';
 
 import { Country } from 'src/app/Models/Country';
-import { element } from 'protractor';
-import { count } from 'rxjs/operators';
-
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/Store/app.state';
+import * as Actions from '/Users/21614/Desktop/Angular/HollywoodBets/src/app/Store/actions/sportTree.actions';
 
 export interface CountryTournament{
   id:number;
   country:Country;
-  tournaments:Tournament[];
+  tournaments:Observable<Tournament[]>;
 }
 
 @Component({
@@ -21,7 +21,7 @@ export interface CountryTournament{
   styleUrls: ['./tournament.component.css']
 })
 
-export class TournamentComponent {
+export class TournamentComponent  {
 
   @Input()
   selectedCountry:any;
@@ -29,18 +29,43 @@ export class TournamentComponent {
   tempValue:number;
 
  
-  tournaments:Tournament[];
+  tournaments:Observable<Tournament[]>;
   finalTournaments:any[];
   private _value:CountryTournament;
   private _previousSelectedCountryValue:any;
   private _nameOfSportId ='sportId';
+  _flag = false;
   
-  constructor(private tournamentService:TournamentService,private route: ActivatedRoute) { }
+  constructor(private tournamentService:TournamentService,private route: ActivatedRoute, private store:Store<AppState>) { 
+    this.store.select(state=> state.sportsTree)
+    .subscribe((data:any)=>{
+    this.tournaments = data;
+  });
+  }
+
+  async update()
+  { 
+    await this.tournaments;
+    console.log(this.tournaments);
+  }
+
+  waitForOneSecond() {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve("I promise to return after one second!");
+      }, 300);
+    });
+  }
 
     ngOnChanges()
     {
-         this.checkIfSelectedCountryUndefined();
-         this.getAddData(this.selectedCountry,this.getSportId());
+         this.store.dispatch(new Actions.GetSportTree(this.getSportId(),this.selectedCountry.countryId));
+         this.waitForOneSecond().then((value) => 
+         {
+           this.checkIfSelectedCountryUndefined();
+           this.addToList();
+        }
+           );
          this.finalTournaments = this.tournamentService.tournamentsList; //refreshes the list after each change to the modal.
     }
 
@@ -55,20 +80,12 @@ export class TournamentComponent {
        return +this.route.snapshot.paramMap.get(this._nameOfSportId);
     }
 
-    getAddData(country:any,id:number) // hits the api and returns the tournaments based on sport and country. Then it calls the add method to add this data to the array.
-    {
-        return this.tournamentService.getTournamentsBasedOnSportAndCountry(id,country.countryId).subscribe((data:any)=>{
-        this.tournaments = data;
-        this.addToList(this.selectedCountry,data);
-      });
-    }
-
-    addToList(country:any,tournament:Tournament[]) //creates an instance of the countryTournament interface and pushes to the service
+    addToList() //creates an instance of the countryTournament interface and pushes to the service
     {
         this._value = {
-          id:this.finalTournaments.length+1,//so its never equal to an item on the list.
-           country: country,
-           tournaments : tournament
+          id:1,//so its never equal to an item on the list.
+           country: this.selectedCountry,
+           tournaments : this.tournaments
          }
          this.tournamentService.addToTournamentList(this._value);
     }

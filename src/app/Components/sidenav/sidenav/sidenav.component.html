@@ -1,27 +1,27 @@
-<div class="col-md-12">
-    <div    class="row ml-lg-1" >
-        <div class="btn-group" role="group" aria-label="Basic example" style="min-width: 100%;min-width: 220px;">
-            <button type="button" class="btn btn-secondary">Left</button>
-            <button type="button" class="btn btn-secondary">Middle</button>
-            <button type="button" class="btn btn-secondary">Right</button>
+<div class="col-md-12 mb-3">
+    <div class="row ml-lg-1" >
+        <div class="btn-group searchSize" role="group" aria-label="Basic example" style="background-color: #643e94 !important;">
+            <button type="button" class="btn btn-secondary" style="background-color: #643e94 !important;">Soccer</button>
+            <button type="button" class="btn btn-secondary" style="background-color: #643e94 !important;">Home</button>
+            <button type="button" class="btn btn-secondary" style="background-color: #643e94 !important;">Sport</button>
           </div>
     </div>
     <div class="row mt-1">
-        <div class="card ml-lg-3" style="background-color: #643e94;border-radius: 0px; min-width:100%;min-width: 220px;">
+        <div class="card ml-lg-3 searchSize" style="background-color: #643e94;border-radius: 0px;">
             <div class="card-body">
-                <input class="form-control" [formControl]="filter"   style="border-radius: 0px;min-width: 100%!important;" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control " [formControl]="filter"   style="border-radius: 0px;" type="search" placeholder="Search" aria-label="Search">
             </div>
         </div>
 
-        <div class="container-fluid ml-lg-3 containerX"  style="background-color: #2b2b2b!important;">
+        <div class="container-fluid ml-lg-3 containerX "  style="background-color: #2b2b2b!important;">
             <div *ngFor="let sport of filteredSports$ | async">
                <a routerLink="/country/{{sport.sportId}}/{{removeSpaceFromSportType(sport.sportName)}}" (click)="onClick();" >
                 <div class="media mt-2" style="min-width: 100%!important;box-shadow: 1px 1px 1px 1px #000;">
                     <a class="d-flex" href="#" style="background-color: #643e94;">
-                        <img src="{{sport.logo}}" width="50" height="50" alt="">
+                        <img src="{{sport.logoUrl}}" width="50" height="50" alt="">
                     </a>
                     <div class="media-body text-nowrap" style="background-color: #2b2b2b;min-height: 50px;">
-                        <p class="text-white mt-2 text-nowrap" style="text-align: center;">{{sport.sportName}}</p>
+                        <p class="text-white mt-2 text-nowrap" style="text-align: center; font-size: 12px">{{sport.sportName}}</p>
                     </div>
                 </div>
                </a> 

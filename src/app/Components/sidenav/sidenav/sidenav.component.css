@@ -6,9 +6,23 @@
 .containerX{
     overflow-y: auto!important;
     max-height: 700px!important;
-    min-width: 100%;
-    min-width: 220px!important;
+    /* min-width: 100%; */
+    min-width: 200px!important;
 }
 .media{
     box-shadow: 1px 1px 1px 1px #000;
+}
+
+.searchSize{
+    width: 100%!important;
+    min-width: 200px!important;
+}
+
+@media(min-width:1250px){
+
+    .searchSize{
+        min-width: 220px!important;
+    }
+
+
 }

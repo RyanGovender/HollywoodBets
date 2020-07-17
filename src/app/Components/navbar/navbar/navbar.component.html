@@ -24,7 +24,7 @@
     <div class="collapse navbar-collapse ml-5" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto" style="margin-left: 25%!important;">
         <li class="nav-item">
-            <a class="nav-link" href="#">ABOUT US</a>
+            <a class="nav-link" routerLink="todays-soccer">HOME</a>
           </li>
         <li class="nav-item">
           <a class="nav-link" href="#">BRANCHES</a>
@@ -70,13 +70,16 @@
   </a>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+      <li>
+        <a name="" id="" class="btn btn-primary" (click)="goBack();" role="button" style="background-color:#643e94!important ;border-color: #643e94;">Back</a>
+      </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <li style="color: #1e1e1e;">
         <a>Odds : </a>
         <a style="color:yellow!important;">Decimal &nbsp;&nbsp;&nbsp;</a>
       </li>
-      <a > 12 Mar 2020 09:26:20 </a>
+      <a > {{today | date:'medium'}} </a>
  
     </form>
   </div>

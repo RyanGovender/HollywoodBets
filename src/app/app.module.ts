@@ -13,6 +13,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { CountryComponent } from './Components/country/country.component';
 import { TournamentComponent } from './Components/tournament/tournament.component';
 import { EventComponent } from './Components/event/event.component';
+import { StoreModule } from '@ngrx/store';
+import { reducer } from './Store/reducers/sportsTree.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { SportTreeEffects } from './Store/effects/sportTree.effects';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +35,11 @@ import { EventComponent } from './Components/event/event.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot({
+      sportsTree:reducer
+    }),
+    EffectsModule.forRoot([SportTreeEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

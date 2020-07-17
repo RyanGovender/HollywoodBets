@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
 import {Tournament} from '../Models/Tournament'
 import { Country } from '../Models/Country';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,9 @@ export class TournamentService {
 
   getTournamentsBasedOnSportAndCountry(sportId:number,countryId:number):Observable<Tournament[]>
   {
-     return this.http.get<Tournament[]>(`${this._url}${this._sportId}${sportId}${this._countryId}${countryId}`);
+     return this.http.get<Tournament[]>(`${this._url}${this._sportId}${sportId}${this._countryId}${countryId}`).pipe(
+      catchError(this.handleError)
+    );
   }
 
   addToTournamentList(countryTournament:any) //first check if country is already in array if not then it adds country to array
@@ -77,5 +80,10 @@ export class TournamentService {
     if(index!==-1) this.tournamentsList.splice(index,1);
     this.updateBetId();
   }
+
+  handleError(error: HttpErrorResponse){
+    console.log(error);
+      return of(error.error);
+    }
 
 }

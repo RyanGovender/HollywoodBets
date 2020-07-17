@@ -18,3 +18,10 @@ table.fitpage {
     border-color: #643e94!important;
     color: #643e94!important;
   }
+
+  @media(max-width:1000px)
+  {
+    .btnGroupShrink{
+      flex-wrap: wrap!important;
+    }
+  }

@@ -19,6 +19,8 @@
     "@angular/platform-browser": "~9.0.3",
     "@angular/platform-browser-dynamic": "~9.0.3",
     "@angular/router": "~9.0.3",
+    "@ngrx/effects": "^9.2.0",
+    "@ngrx/store": "^9.2.0",
     "bootstrap": "^4.4.1",
     "jquery": "^3.4.1",
     "rxjs": "~6.5.4",
@@ -46,9 +48,8 @@
     "tslint": "~5.18.0",
     "typescript": "~3.7.5"
   },
-    
-  "/api":{
-    "target":"https://localhost:44330/",
-    "secure":false
+  "/api": {
+    "target": "https://localhost:44330/",
+    "secure": false
   }
 }

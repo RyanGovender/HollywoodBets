@@ -24,6 +24,6 @@ export class TodaysSoccerComponent implements OnInit {
   }
 
   addEventToBetSlip(event:any,punterchoice:string,odds:number){
-    this.betslip.addToBetSlip(event,punterchoice,odds);
+    this.betslip.addToBetSlip(event,punterchoice,odds,'Soccer');
   }
 }
